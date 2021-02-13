@@ -1,36 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import SelectedItems from '../SelectedItems/SelectedItems';
 import PageNotFound from '../PageNotFound/PageNotFound';
+import pokemonsList from '../../utils/constants';
 
 function App() {
-  const [selectedCards, setSelectedCards] = useState([]);
+  /*удаляем список избранных покемонов каждый раз при перезагрузке приложения */
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
+  const [favoriteCards, setFavoriteCards] = useState([]);
+  /*функция для добавления и удаления покемонов из списка избранных */
   function setSelectedPokemons(card) {
-    console.log('fff');
-    console.log(card);
-    if (selectedCards.length > 0) {
-      if (!selectedCards.some(item => item.id === card.id)) {
-        setSelectedCards(prev => {
-          return [
-            ...prev,
-            card
-          ]
-        })
+    /*карточки выбранных покемонов хранятся в localStorage */
+    let favoritesList = localStorage.getItem('favorites');
+    if (!favoritesList || favoritesList.length === 0) {
+      localStorage.setItem('favorites', JSON.stringify([card]));
+      setFavoriteCards([card]);
+    }
+    else {
+      favoritesList = JSON.parse(favoritesList);
+      /*если карточка уже есть в списке избранных, удаляем ее */
+      if (favoritesList.some(item => item.name === card.name)) {
+        const newFavoritesList = favoritesList.filter(item => item.name !== card.name);
+        localStorage.setItem('favorites', JSON.stringify(newFavoritesList));
+        setFavoriteCards(newFavoritesList);
+      }
+      /*если карточки нет есть в списке избранных, добавляем ее */
+      else {
+        favoritesList.push(card);
+        localStorage.setItem('favorites', JSON.stringify(favoritesList));
+        setFavoriteCards(favoritesList);
       }
     }
-    else setSelectedCards([card]);
-  }
-
-  function deleteSelectedItems(card) {
-    console.log('ddd');
-    setSelectedCards(prev => {
-      const newCardsList = selectedCards.filter(item => item.id !== card.id);
-      return newCardsList;
-    })
   }
 
   return (
@@ -39,7 +46,10 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/">
-            <Main selectedCards={selectedCards} onSelectButtonClick={(card) => setSelectedPokemons(card)} onDeleteButtonClick={(card) => deleteSelectedItems(card)} />
+            <Main favorites={favoriteCards} pokemonsList={pokemonsList} onSelectButtonClick={(card) => setSelectedPokemons(card)} />
+          </Route>
+          <Route path="/my-collection">
+            <SelectedItems cards={favoriteCards} onSelectButtonClick={(card) => setSelectedPokemons(card)} />
           </Route>
           <Route path="/pokemons/:id">
             <Main />

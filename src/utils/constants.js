@@ -1,4 +1,4 @@
-const pokemonsList = [
+let pokemonsList = [
   {
     "picture": "https://gabbyapp.com/pockemons/i/Bulbasaur.png",
     "name": "Bulbasaur",
@@ -31,7 +31,6 @@ const pokemonsList = [
     "weight": "9.9 кг",
     "type": "Fox"
   }
-
 ]
 
 export default pokemonsList;

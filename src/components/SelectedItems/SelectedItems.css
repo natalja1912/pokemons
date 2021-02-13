@@ -1,0 +1,11 @@
+.selected{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.selected_pokemons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

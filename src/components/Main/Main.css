@@ -1,0 +1,11 @@
+.main-page{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.pokemons{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

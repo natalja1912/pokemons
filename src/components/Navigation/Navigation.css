@@ -1,0 +1,46 @@
+.nav{
+    display: flex;
+}
+
+.nav__link{
+    display: flex;
+    margin-left: 32px;
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.33;
+    cursor: pointer;
+    transition: all 0.4s ease-in;
+}
+
+.nav__link:hover{
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 768px) {
+    .nav{
+        margin-top: 14px;
+    }
+
+    .nav__link{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    .nav{
+        margin-top: 16px;
+        display: none;
+        border-top: 1px solid #C4C4C4;
+    }
+    .nav__link{
+        margin-left: 0;
+        border-bottom: none;
+        font-size: 18px;
+        line-height: 3;
+    }
+}

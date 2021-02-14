@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import './Navigation.css';
 
 function Navigation() {
-
     return (
         <nav className="nav">
             <Link to="/" className={`nav__link`}>Главная</Link>

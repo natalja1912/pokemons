@@ -7,6 +7,7 @@ import Header from '../Header/Header';
 import SelectedItems from '../SelectedItems/SelectedItems';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import pokemonsList from '../../utils/constants';
+import DetailedPokemonInfo from '../DetailedPokemonInfo/DetailedPokemonInfo';
 
 function App() {
   /*удаляем список избранных покемонов каждый раз при перезагрузке приложения */
@@ -51,8 +52,8 @@ function App() {
           <Route path="/my-collection">
             <SelectedItems cards={favoriteCards} onSelectButtonClick={(card) => setSelectedPokemons(card)} />
           </Route>
-          <Route path="/pokemons/:id">
-            <Main />
+          <Route path="/pokemons/:name">
+            <DetailedPokemonInfo pokemonsList={pokemonsList} />
           </Route>
           <Route path="*">
             <PageNotFound />

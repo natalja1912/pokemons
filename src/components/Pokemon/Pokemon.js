@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import './Pokemon.css';
 import FlagIcon from '../icons/FlagIcon/FlagIcon';
 import TrashIcon from '../icons/TrashIcon/TrashIcon';
@@ -21,6 +22,7 @@ function Pokemon({ card, mainpage, favorite, addToFavorites }) {
             <div className="card__info-text">
                 {cardInfoText}
             </div>
+            <Link to={`pokemons/${card.name}`}>
             <img className="card__image" src={card.picture} alt="Изображение покемона" />
             <div className="card__group">
                 <h2 className="card__heading">{card.name}</h2>
@@ -29,6 +31,7 @@ function Pokemon({ card, mainpage, favorite, addToFavorites }) {
                 {!mainpage && <p className="card__info">{`вес: ${card.weight}`}</p>}
                 {!mainpage && <p className="card__text">{card.description}</p>}
             </div>
+            </Link>
         </section>
     );
 }

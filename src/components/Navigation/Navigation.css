@@ -1,5 +1,6 @@
 .nav{
     display: flex;
+    align-items: center;
 }
 
 .nav__link{
@@ -21,11 +22,13 @@
     opacity: 0.8;
 }
 
-@media screen and (max-width: 768px) {
-    .nav{
-        margin-top: 14px;
-    }
+.nav__link_type_active{
+    padding: 8px;
+    border: 2px solid #FFFFFF;
+    border-radius: 20px;
+}
 
+@media screen and (max-width: 768px) {
     .nav__link{
         font-size: 16px;
     }
@@ -33,14 +36,30 @@
 
 @media screen and (max-width: 426px) {
     .nav{
+        display: none;
+        width: 100%;
         margin-top: 16px;
         flex-direction: column;
-        border-top: 1px solid #C4C4C4;
+        align-items: flex-start;
+        border-top: 1px solid #c4c4c4;
     }
+
+    .nav_active{
+        display: flex;
+        padding: 0 16px;
+    }
+
     .nav__link{
         margin-left: 0;
         border-bottom: none;
         font-size: 18px;
-        line-height: 3;
+        line-height: 2;
+    }
+
+    .nav__link_type_active{
+        border: 0;
+        padding: 0;
+        border-bottom: 2px solid #FFFFFF;
+        border-radius: 0;
     }
 }

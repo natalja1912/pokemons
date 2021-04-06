@@ -10,4 +10,4 @@
  * Адаптивная верстка
 
 ## Ссылка на сайт github pages 
-https://github.com/natalja1912/pokemons
+https://natalja1912.github.io/pokemons/
